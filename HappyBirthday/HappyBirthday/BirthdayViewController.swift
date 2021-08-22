@@ -9,11 +9,13 @@
 import UIKit
 //import Darwin
 class BirthdayViewController: UIViewController {
-    
+    var rndValue: Int = 0
+
     @IBOutlet weak var shareTheNewsButton: UIButton!
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var uploadPictureImageView: UIImageView!
     
+    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
     @IBOutlet weak var age: UIImageView!
 //    @IBOutlet weak var uploadOriginX: NSLayoutConstraint!
 //    @IBOutlet weak var uploadOriginY: NSLayoutConstraint!
@@ -21,12 +23,18 @@ class BirthdayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let lowerBound: UInt32 = 100
+        let upperBound: UInt32 = 500
+        rndValue = Int(lowerBound + arc4random() % (upperBound - lowerBound))
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        shareTheNewsButton.layer.cornerRadius = shareTheNewsButton.frame.size.height / 2
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        shareTheNewsButton.layer.cornerRadius = shareTheNewsButton.frame.size.height / 2
+        
+        print(rndValue)
+        bottomViewHeight.constant = CGFloat(rndValue)
 //
 //        let radius: CGFloat = uploadPictureImageView.frame.size.width / 2
 //        let pos = calcButtonPosition(radius: Float(radius), angle: 45)
@@ -38,7 +46,7 @@ class BirthdayViewController: UIViewController {
 //        let radius: CGFloat = uploadPictureImageView.frame.size.width / 2
 //        let pos = calcButtonPosition(radius: Float(radius), angle: 45)
 //
-//    }
+    }
 
     func calcButtonPosition(radius: Float, angle: Float) -> CGPoint {
         let x: CGFloat = CGFloat(radius * cos(angle))
