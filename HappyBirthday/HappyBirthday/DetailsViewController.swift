@@ -8,16 +8,19 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    var uploadedPhoto: UIImage?
+    
+    var imagePicker = UIImagePickerController()
     
     @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var birthday: UIDatePicker!
-    @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var birthdayScreenButton: UIButton!
     
     // MARK: - View controller lifecycle methods
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,14 +35,35 @@ class DetailsViewController: UIViewController {
                                                object: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    deinit {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.didEnterBackgroundNotification,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.didBecomeActiveNotification,
                                                   object: nil)
+    }
+    
+    @IBAction func uploadPicture(_ sender: Any) {
+        guard UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else { return }
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .savedPhotosAlbum
+        imagePicker.allowsEditing = false
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    //MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // The end of the method - finally, dismiss picker
+        defer { self.dismiss(animated: true) }
+        
+        // Setting image chosen by user
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        uploadedPhoto = image
     }
     
     // MARK: - User input data 
@@ -56,7 +80,7 @@ class DetailsViewController: UIViewController {
         
         do {
             var imageData: Data?
-            if let image = picture.image {
+            if let image = uploadedPhoto {
                 imageData = try NSKeyedArchiver.archivedData(withRootObject: image, requiringSecureCoding: false)
             }
             defaults.set(imageData, forKey: "picture")
@@ -86,14 +110,27 @@ class DetailsViewController: UIViewController {
         
         do {
             if let pictureData = defaults.data(forKey: "picture") {
-                let imageData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(pictureData) as! Data
-                if let image = UIImage(data: imageData) {
-                    picture.image = image
+                let imageData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(pictureData) as? Data
+                if let imgData = imageData,
+                    let image = UIImage(data: imgData) {
+                    uploadedPhoto = image
                 }
             }
         } catch {
             print("Couldn't load image")
         }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let birthdayVC = segue.destination as? BirthdayViewController else { return }
+        
+        saveDataFromScreen()
+        
+        birthdayVC.name = nameTextField.text
+        birthdayVC.date = birthday.date
+        birthdayVC.pic = uploadedPhoto
     }
 }
 

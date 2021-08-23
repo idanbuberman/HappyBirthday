@@ -16,6 +16,7 @@
 		E20FEE5C26CE84E40097B72D /* HappyBirthdayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FEE5B26CE84E40097B72D /* HappyBirthdayTests.swift */; };
 		E20FEE6726CE84E40097B72D /* HappyBirthdayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FEE6626CE84E40097B72D /* HappyBirthdayUITests.swift */; };
 		E20FEE7726CEEDBF0097B72D /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FEE7626CEEDBF0097B72D /* BirthdayViewController.swift */; };
+		E24F389526D3BDF8008D2EC7 /* ThemeRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24F389426D3BDF8008D2EC7 /* ThemeRetriever.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		E20FEE6626CE84E40097B72D /* HappyBirthdayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyBirthdayUITests.swift; sourceTree = "<group>"; };
 		E20FEE6826CE84E40097B72D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E20FEE7626CEEDBF0097B72D /* BirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
+		E24F389426D3BDF8008D2EC7 /* ThemeRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRetriever.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				E20FEE4626CE84E00097B72D /* SceneDelegate.swift */,
 				E20FEE4826CE84E00097B72D /* DetailsViewController.swift */,
 				E20FEE7626CEEDBF0097B72D /* BirthdayViewController.swift */,
+				E24F389426D3BDF8008D2EC7 /* ThemeRetriever.swift */,
 				E20FEE4A26CE84E00097B72D /* Main.storyboard */,
 				E20FEE4D26CE84E30097B72D /* Assets.xcassets */,
 				E20FEE4F26CE84E30097B72D /* LaunchScreen.storyboard */,
@@ -265,6 +268,7 @@
 				E20FEE4926CE84E00097B72D /* DetailsViewController.swift in Sources */,
 				E20FEE7726CEEDBF0097B72D /* BirthdayViewController.swift in Sources */,
 				E20FEE4526CE84E00097B72D /* AppDelegate.swift in Sources */,
+				E24F389526D3BDF8008D2EC7 /* ThemeRetriever.swift in Sources */,
 				E20FEE4726CE84E00097B72D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
