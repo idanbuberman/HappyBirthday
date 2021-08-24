@@ -42,5 +42,4 @@ class ThemeRetriever {
         let randomIndex = Int(arc4random() % UInt32(backgroundImages.count))
         return backgroundImages[randomIndex]
     }
-    
 }

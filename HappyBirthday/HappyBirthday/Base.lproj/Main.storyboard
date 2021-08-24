@@ -90,16 +90,11 @@
                                     <constraint firstAttribute="width" secondItem="Ink-Wn-0dd" secondAttribute="height" multiplier="375:667" id="bw2-3g-izO"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3t-23-Iwr">
-                                <rect key="frame" x="194" y="448" width="26" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="arrowBackBlue"/>
-                            </button>
                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="6KK-ln-gAt">
                                 <rect key="frame" x="0.0" y="56" width="414" height="379"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mSq-Ts-khO">
-                                        <rect key="frame" x="45" y="94.5" width="324" height="190.5"/>
+                                        <rect key="frame" x="45" y="116" width="324" height="147.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY CHRISTIANO RONALDO IS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="C3d-nh-hhb">
                                                 <rect key="frame" x="-12.5" y="0.0" width="349.5" height="50"/>
@@ -112,22 +107,18 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="gQL-8R-Dcf">
-                                                <rect key="frame" x="62.5" y="63" width="199" height="89"/>
+                                                <rect key="frame" x="99" y="63" width="126" height="46"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftSwirl" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-Qx-gtB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="89"/>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="epp-SZ-CEf">
-                                                        <rect key="frame" x="74" y="0.0" width="51" height="89"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="46"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightSwirl" translatesAutoresizingMaskIntoConstraints="NO" id="11i-nT-iym">
-                                                        <rect key="frame" x="147" y="0.0" width="52" height="89"/>
+                                                        <rect key="frame" x="74" y="0.0" width="52" height="46"/>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONTH OLD!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-rL-zLF">
-                                                <rect key="frame" x="94" y="166" width="136.5" height="24.5"/>
+                                                <rect key="frame" x="94" y="123" width="136.5" height="24.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24.5" id="bX8-gK-wTw"/>
@@ -167,7 +158,7 @@
                                             <constraint firstAttribute="width" secondItem="zp6-Ly-H7L" secondAttribute="height" multiplier="1:1" id="yGm-CR-aHU"/>
                                         </constraints>
                                     </imageView>
-                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4R5-hw-ead">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4R5-hw-ead">
                                         <rect key="frame" x="207" y="0.0" width="111" height="111"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuK-19-hQL">
@@ -286,8 +277,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="6er-It-q06"/>
                     <connections>
-                        <outlet property="ageImageView" destination="epp-SZ-CEf" id="DUg-zO-oDA"/>
                         <outlet property="ageLabel" destination="7ut-rL-zLF" id="vH1-kL-Zy4"/>
+                        <outlet property="ageStackView" destination="gQL-8R-Dcf" id="CZr-bo-1hh"/>
                         <outlet property="backButton" destination="5Jq-xf-9Uh" id="5eJ-yg-eEP"/>
                         <outlet property="behindTheShareView" destination="tNN-lc-h6A" id="mz7-FK-SwJ"/>
                         <outlet property="bigBackgroundImageView" destination="Ink-Wn-0dd" id="FV9-5U-Mxr"/>
@@ -305,7 +296,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1" width="51" height="89"/>
         <image name="arrowBackBlue" width="26" height="21"/>
         <image name="cameraIconBlue" width="36" height="36"/>
         <image name="defaultPlaceHolderBlue" width="222" height="222"/>

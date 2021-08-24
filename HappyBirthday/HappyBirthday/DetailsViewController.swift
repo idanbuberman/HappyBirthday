@@ -23,8 +23,8 @@ class DetailsViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+
+        // Adding observers in order to save-retrieve data between app cycles
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.saveDataFromScreen),
                                                name: UIApplication.didEnterBackgroundNotification,
@@ -36,6 +36,8 @@ class DetailsViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     deinit {
+        
+        // Removing observers
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.didEnterBackgroundNotification,
                                                   object: nil)
@@ -71,17 +73,19 @@ class DetailsViewController: UIViewController, UINavigationControllerDelegate, U
     // MARK: - User input data 
     
     @objc func saveDataFromScreen() {
+        
+        // Using UserDefaults to save name and birthday
         let defaults = UserDefaults.standard
         
         defaults.set(nameTextField.text, forKey: "name")
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/YYYY"
+        let dateFormatter = ISO8601DateFormatter()
         let birthdayString = dateFormatter.string(from: birthday.date)
         defaults.set(birthdayString, forKey: "birthday")
         
         defaults.synchronize()
         
+        // Photo saving will occur on DocDir
         save(Image: uploadedPhoto, named: "uploadedPhoto.jpg")
     }
     
@@ -106,22 +110,24 @@ class DetailsViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     @objc func retrieveDataToScreen() {
+        
+        // Using UserDefaults to retrieve name and birthday
         let defaults = UserDefaults.standard
         
         if let savedText = defaults.string(forKey: "name") {
             nameTextField.text = savedText
-            print("Textfield Text: \(savedText)")
+            print("User Defaults name: \(savedText)")
         }
         
         if let birthdayString = defaults.string(forKey: "birthday") {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM/dd/YYYY"
+            let dateFormatter = ISO8601DateFormatter()
             let date = dateFormatter.date(from: birthdayString) ?? Date.distantPast
             
             birthday.setDate(date, animated: false)
-            print("Textfield Text: \(birthdayString)")
+            print("User Defaults Birthday: \(birthdayString)")
         }
         
+        // Retrieving Photo from DocDir
         uploadedPhoto = getPhoto(named: "uploadedPhoto.jpg")
     }
     

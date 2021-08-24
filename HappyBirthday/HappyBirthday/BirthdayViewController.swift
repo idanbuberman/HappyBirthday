@@ -19,7 +19,7 @@ class BirthdayViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBOutlet weak var bigBackgroundImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ageImageView: UIImageView!
+    @IBOutlet weak var ageStackView: UIStackView!
     @IBOutlet weak var ageLabel: UILabel!
     
     @IBOutlet weak var pictureImageView: UIImageView!
@@ -159,9 +159,33 @@ class BirthdayViewController: UIViewController, UINavigationControllerDelegate, 
         guard let dateOfBirth = date as? Date else { return }
         
         let months = Calendar.current.dateComponents([Calendar.Component.month], from: dateOfBirth, to: Date()).month ?? 0
-        let age = (months / 12 > 0) ? (months / 12) : (months % 12)
+        
+        let isOlderThanOneYear = (months / 12 > 0) ? true : false
+        let age = isOlderThanOneYear ? (months / 12) : (months % 12)
 
-        ageImageView.image = UIImage(named: "\(age)")
-        ageLabel.text = "\((months / 12 > 0) ? "YEAR" : "MONTH") OLD!"
+        if isOlderThanOneYear && age > 12 { // Add as long number
+            addNumberImagesToAgeStackView(number: age)
+        } else if age < 0 { // Not born yet
+            addDigitImageToAgeStackView(0)
+        } else { // Between 0 month to 12 year old
+            addDigitImageToAgeStackView(age)
+        }
+        ageLabel.text = "\(isOlderThanOneYear ? "YEAR" : "MONTH") OLD!"
+    }
+    
+    // Adding long numbers to UIStackView one digit at a time
+    func addNumberImagesToAgeStackView(number: Int) {
+        var num = number
+        while num != 0 {
+            let digit = abs(num % 10)
+            addDigitImageToAgeStackView(digit)
+            num = num / 10
+        }
+    }
+    
+    // Adding digits images to UIStackView
+    func addDigitImageToAgeStackView(_ digit: Int) {
+        let image = UIImageView(image: UIImage(named: "\(digit)"))
+        ageStackView.insertArrangedSubview(image, at: 1)
     }
 }
