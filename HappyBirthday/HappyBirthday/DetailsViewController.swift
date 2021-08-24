@@ -8,9 +8,9 @@
 
 import UIKit
 
+var uploadedPhoto: UIImage?
+
 class DetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    var uploadedPhoto: UIImage?
     
     var imagePicker = UIImagePickerController()
     
@@ -44,6 +44,8 @@ class DetailsViewController: UIViewController, UINavigationControllerDelegate, U
                                                   object: nil)
     }
     
+    //MARK: - IBActions
+
     @IBAction func uploadPicture(_ sender: Any) {
         guard UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else { return }
         
@@ -78,17 +80,29 @@ class DetailsViewController: UIViewController, UINavigationControllerDelegate, U
         let birthdayString = dateFormatter.string(from: birthday.date)
         defaults.set(birthdayString, forKey: "birthday")
         
-        do {
-            var imageData: Data?
-            if let image = uploadedPhoto {
-                imageData = try NSKeyedArchiver.archivedData(withRootObject: image, requiringSecureCoding: false)
-            }
-            defaults.set(imageData, forKey: "picture")
-        } catch {
-            print("Couldn't save image")
-        }
-        
         defaults.synchronize()
+        
+        save(Image: uploadedPhoto, named: "uploadedPhoto.jpg")
+    }
+    
+    func save(Image image: UIImage?, named name: String) {
+        
+        // Get the documents directory url
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        // Destination file url to save image
+        let imageURL = documentsDirectory.appendingPathComponent(name)
+        
+        // Get UIImage jpeg data representation
+        if let data = image?.jpegData(compressionQuality:  1.0) {
+            do {
+                // Writes the image data to disk
+                try data.write(to: imageURL)
+                print("file saved")
+            } catch {
+                print("error saving file:", error)
+            }
+        }
     }
     
     @objc func retrieveDataToScreen() {
@@ -108,17 +122,19 @@ class DetailsViewController: UIViewController, UINavigationControllerDelegate, U
             print("Textfield Text: \(birthdayString)")
         }
         
-        do {
-            if let pictureData = defaults.data(forKey: "picture") {
-                let imageData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(pictureData) as? Data
-                if let imgData = imageData,
-                    let image = UIImage(data: imgData) {
-                    uploadedPhoto = image
-                }
-            }
-        } catch {
-            print("Couldn't load image")
-        }
+        uploadedPhoto = getPhoto(named: "uploadedPhoto.jpg")
+    }
+    
+    func getPhoto(named name: String) ->  UIImage? {
+        
+        // Get the documents directory url
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        // Destination file url to get image
+        let imageURL = documentsDirectory.appendingPathComponent(name)
+        
+        // Return image from docDir
+        return UIImage(contentsOfFile: imageURL.path)
     }
     
     // MARK: - Navigation
