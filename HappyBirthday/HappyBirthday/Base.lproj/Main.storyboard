@@ -97,7 +97,7 @@
                                         <rect key="frame" x="45" y="116" width="324" height="147.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY CHRISTIANO RONALDO IS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="C3d-nh-hhb">
-                                                <rect key="frame" x="-12.5" y="0.0" width="349.5" height="50"/>
+                                                <rect key="frame" x="-12.5" y="0.0" width="349" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="pre-Rw-7Tk"/>
@@ -142,6 +142,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="C3d-nh-hhb" firstAttribute="leading" secondItem="6KK-ln-gAt" secondAttribute="leading" constant="32.5" id="ExP-4Y-YBh"/>
                                     <constraint firstItem="mSq-Ts-khO" firstAttribute="centerX" secondItem="6KK-ln-gAt" secondAttribute="centerX" id="KDA-uE-B8M"/>
                                     <constraint firstItem="mSq-Ts-khO" firstAttribute="centerY" secondItem="6KK-ln-gAt" secondAttribute="centerY" id="eUF-DE-MAU"/>
                                     <constraint firstItem="mSq-Ts-khO" firstAttribute="leading" secondItem="6KK-ln-gAt" secondAttribute="leading" constant="45" id="es8-dw-ZbO"/>
